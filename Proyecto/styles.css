@@ -1,0 +1,51 @@
+
+
+/* VARIABLES GLLOBALES DE ESTILO*/
+
+:root {
+    /* Colores para modo claro */
+    --color_bg_light: white;
+    --color_text_light: black;
+    --color_card_light: white;
+    --color_border_light: white;
+    --color_primary: red;
+    --color_secondary: blue;
+    --color_success: green;
+    --color_error: red;
+    --color_warning: orange;
+
+    /* Colores para modo oscuro */
+
+    --color_bg_dark: black;
+    --color_text_dark: white;
+    --color_card_dark: black;
+    --color_border_dark: grey;
+
+     /* Sombras */
+    --shadow_sm: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow_md: 0 8px 10px rgba(0,0,0,0.1);
+    --shadow_lg: 0 12px 15px rgba(0,0,0,0.1);
+    --shadow_dark: 0 4px 6px rgba(0,0,0,0.1);
+
+    /* Tipografia */
+    --font_family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --font_size_sm: 1rem;
+    --font_size_base: 1.5rem;
+    --font_size_lg: 2rem;
+    --font_size_xl: 3rem;
+
+    /* Espaciado */
+    --spacing_sm: 0.5rem;
+    --spacing_md: 1rem;
+    --spacing_lg: 2rem;
+
+    /*Transiciones */
+    --transitiion_fast: 0.4 ease;
+    --transition_medium: 0.6s ease;
+    --transition_slow: 0.8s ease;
+
+    /* Bordes */
+    --border_radius_sm: 4px;
+    --border_radius_md: 8px;
+    --border_radius_lg: 12px;
+}
