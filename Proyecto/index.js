@@ -2,8 +2,6 @@
 
 /* Configuracion principal del proyecto */
 
-const { useImperativeHandle } = require("react");
-
 const urlBaseAPI = "https://rickandmortyapi.com/api/character";
 
 /* Selectores de busqueda */
@@ -24,7 +22,7 @@ const busqueda = document.querySelector("#searchForm");
 
 /* Selector de modo oscuro */
 
-const toggleModoOscuro = document.querySelector("#darkModeBtn");
+const toggleModoOscuro = document.querySelector("#themeToggle");
 
 /* Variables para la paginacion */
 
@@ -39,13 +37,13 @@ function inicializarTema(){
     const modoOscuroGuardado = localStorage.getItem("modoOscuro");
 
     if (modoOscuroGuardado === "true") {
-        document.body.classList.add("dark-mode");
+        document.body.classList.add("dark");
         toggleModoOscuro.checked = true;
     }
 
 }
 function modoOscuro(){
-    document.body.classList.toggle("dark-mode");
+    document.body.classList.toggle("dark");
 
     if (document.body.classList.contains("dark-mode")) {
         localStorage.setItem("modoOscuro", "true");
@@ -59,7 +57,7 @@ function modoOscuro(){
 async function buscarPersonajes(urlAPI){
     try {
         textoEstado.textContent = "Cargando...";
-        textoEstado.computedStyleMap.display = "block";
+        textoEstado.style.display = "block";
 
         const respuesta = await fetch(urlAPI);
 
@@ -98,7 +96,7 @@ function mostrarPersoanjes(personajes){
         tarjetaPersonaje.classList.add("character-card");
         tarjetaPersonaje.setAttribute("role", "article");
 
-        const colorEstado = colorEstado(personaje.status);
+        const colorDelEstado = colorEstado(personaje.status);
 
         /* Contenido de la tarjeta */
         tarjetaPersonaje.innerHTML = `
@@ -111,7 +109,7 @@ function mostrarPersoanjes(personajes){
         <h3>${personaje.name}</h3>
         <p>
           <strong>Estado:</strong> 
-          <span style="color: ${colorEstado}; font-weight: bold;">
+          <span style="color: ${colorDelEstado}; font-weight: bold;">
             ${personaje.status}
           </span>
         </p>
@@ -173,24 +171,16 @@ function inicializar(){
     inicializarTema();
 
     const URLinicial = urlAPI(urlBaseAPI, { page: 1});
-    mostrarPersoanjes(URLinicial);
+    buscarPersonajes(URLinicial);
 
     console.log("Proyecto iniciado");
     console.log(URLinicial);
-
-    document.addEventListener("DOMContentLoaded", inicializar);
-
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", inicializar);
-    } else {
-        inicializar();
-    }
 }
 
  /* Eventos */
  toggleModoOscuro.addEventListener("change", modoOscuro);
 
- formBusqueda.addEventListener("submit", function(event){
+ busqueda.addEventListener("submit", function(event){
     event.preventDefault();
 
     const nombreBusqueda = inputBusqueda.value.trim();
@@ -232,4 +222,6 @@ function inicializar(){
             buscarPersonajes(Anterior);
         }
     });
-    
+
+/* Inicializar la aplicacion */
+inicializar();
