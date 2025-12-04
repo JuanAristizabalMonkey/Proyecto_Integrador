@@ -6,7 +6,7 @@ const urlBaseAPI = "https://rickandmortyapi.com/api/character";
 
 /* Selectores de busqueda */
 
-const contenedorResultados = document.querySelector("results");
+const contenedorResultados = document.querySelector("#results");
 const inputBusqueda = document.querySelector("#searchInput");
 const botonBusqueda = document.querySelector("#searchBtn");
 const cargarPrimeros = document.querySelector("#loadBtn");
@@ -42,7 +42,7 @@ async function buscarPersonajes(){
 
 }
 function mostrarPersoanjes(){
-    
+
 }
 function actualizarBotonesPagina(){
 
