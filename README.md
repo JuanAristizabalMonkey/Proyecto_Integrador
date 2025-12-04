@@ -1,3 +1,4 @@
+
 # Rick and Morty - Proyecto Integrador
 
 Aplicación web interactiva que permite explorar y buscar personajes de la serie animada "Rick and Morty". Desarrollada como proyecto integrador del Módulo 1 de JavaScript, la aplicación consume datos de la [API Rick and Morty](https://rickandmortyapi.com/) y los presenta en una interfaz moderna y responsive.
