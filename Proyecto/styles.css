@@ -49,3 +49,33 @@
     --border_radius_md: 8px;
     --border_radius_lg: 12px;
 }
+
+
+/* Normalizacion de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 15px;
+    scroll-behavior: smooth;
+
+}
+
+body {
+    font-family: var(--font_family);
+    font-size: var(--font_size_base);
+    background-color: var(--color_bg_light);
+    color: var(--color_text_light);
+    transition: background-color var(--transition_medium), color var(--transition_medium);
+    padding: var(--spacing_md);
+    line-height: 1.5;
+}
+
+body.dark {
+    background-color: var(--color_bg_dark);
+    color: var(--color_text_dark);
+}
+
