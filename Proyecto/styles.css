@@ -121,6 +121,10 @@ a:hover {
     padding: var(--spacing_lg);
     border-bottom: 2px solid var(--color_border_light);
     transition: border-color var(--transition_medium);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing_lg);
 }
 
 body.dark .Header {
@@ -129,8 +133,8 @@ body.dark .Header {
 
 .Header .container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    flex: 1;
 }
 
 #main_title {
@@ -160,6 +164,11 @@ body.dark .Header {
 
 .switch_theme input {
     display: none;
+}
+
+.switch_label {
+    position: relative;
+    display: inline-block;
 }
 
 .switch_label::before {

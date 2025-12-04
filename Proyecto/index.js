@@ -45,7 +45,7 @@ function inicializarTema(){
 function modoOscuro(){
     document.body.classList.toggle("dark");
 
-    if (document.body.classList.contains("dark-mode")) {
+    if (document.body.classList.contains("dark")) {
         localStorage.setItem("modoOscuro", "true");
     } else {
         localStorage.setItem("modoOscuro", "false");
@@ -199,10 +199,8 @@ function inicializar(){
 
     botonBusqueda.addEventListener("click", function(){
         numeroPaginaActual = 1;
-        limpiarBusqueda();
-
-        const URLprimeros = urlAPI(urlBaseAPI, { page: 1});
-        buscarPersonajes(URLprimeros);
+        const urlBusqueda = urlAPI (urlBaseAPI, { name: inputBusqueda.value.trim()});
+        buscarPersonajes(urlBusqueda);
     });
 
     botonSiguiente.addEventListener("click", function(){
