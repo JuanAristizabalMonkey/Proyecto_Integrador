@@ -2,6 +2,8 @@
 
 /* Configuracion principal del proyecto */
 
+const { useImperativeHandle } = require("react");
+
 const urlBaseAPI = "https://rickandmortyapi.com/api/character";
 
 /* Selectores de busqueda */
@@ -145,13 +147,89 @@ function colorEstado(estado){
 
     return colores[estado] || "grey";
  }
+/**
+ * Construye una URL con parámetros
+ * @param {string} baseURL - URL base
+ * @param {Object} parametros - Objeto con parámetros
+ * @returns {string} - URL completa
+ */
+ function urlAPI (baseURL, parametros){
+    const url = new URL(baseURL);
 
- function urlAPI (){
+    Object.keys(parametros).forEach(key =>
+    url.searchParams.append(key, parametros[key]));
 
+    return url.toString();
  }
+
  function limpiarBusqueda(){
+    inputBusqueda.value = "";
+    inputBusqueda.focus();
 
  }
+/* Funcion inicial */
 function inicializar(){
 
+    inicializarTema();
+
+    const URLinicial = urlAPI(urlBaseAPI, { page: 1});
+    mostrarPersoanjes(URLinicial);
+
+    console.log("Proyecto iniciado");
+    console.log(URLinicial);
+
+    document.addEventListener("DOMContentLoaded", inicializar);
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", inicializar);
+    } else {
+        inicializar();
+    }
 }
+
+ /* Eventos */
+ toggleModoOscuro.addEventListener("change", modoOscuro);
+
+ formBusqueda.addEventListener("submit", function(event){
+    event.preventDefault();
+
+    const nombreBusqueda = inputBusqueda.value.trim();
+    if (nombreBusqueda === "") {
+        alert("Por favor ingresa un nombre para buscar.");
+        inputBusqueda.focus();
+        return;
+    }
+
+    numeroPaginaActual = 1;
+
+    const urlBusqueda = urlAPI (urlBaseAPI, { name: nombreBusqueda});
+
+    buscarPersonajes(urlBusqueda);
+});
+
+    botonBusqueda.addEventListener("click", function(){
+        numeroPaginaActual = 1;
+        limpiarBusqueda();
+
+        const URLprimeros = urlAPI(urlBaseAPI, { page: 1});
+        buscarPersonajes(URLprimeros);
+    });
+
+    botonSiguiente.addEventListener("click", function(){
+        if (numeroPaginaActual < totalPaginas) {
+            numeroPaginaActual++;
+
+            const Siguiente = urlAPI(urlBaseAPI, { page: numeroPaginaActual});
+            buscarPersonajes(Siguiente);
+        }
+    });
+
+    botonAnterior.addEventListener("click", function(){
+        if (numeroPaginaActual > 1) {
+            numeroPaginaActual--;
+
+            const Anterior = urlAPI (urlBaseAPI, { page: numeroPaginaActual});
+            buscarPersonajes(Anterior);
+        }
+    });
+    
